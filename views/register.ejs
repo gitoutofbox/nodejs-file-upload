@@ -30,7 +30,7 @@
 
   <div class="form-group">
     <label for="pwd">Avatar:</label>
-    <input type="file" class="form-control" id="avatar" placeholder="Enter avatar" name="avatar" required
+    <input type="file" id="avatar" placeholder="Enter avatar" name="avatar" required
       class="form-control <%= typeof errors !== 'undefined' && typeof errors.avatar !== 'undefined' ? 'is-invalid' : '' %>">
     <div class="invalid-feedback">
       <%= typeof errors !=='undefined' && typeof errors.avatar !=='undefined' ? errors.avatar : '' %>

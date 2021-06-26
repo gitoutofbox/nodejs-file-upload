@@ -23,6 +23,7 @@ const storage = multer.diskStorage({
 const uploadAvatar = multer({
     storage: storage,
     fileFilter: (req, file, cb) => {
+        console.log(file.mimetype)
         if(file.mimetype === 'image/jpeg' || 
         file.mimetype === 'image/jpg' || 
         file.mimetype === 'image/png' ||
@@ -68,10 +69,12 @@ const addUser = (req, res) => {
                 bryptjs.genSalt(10, (err, salt) => {
                     bryptjs.hash(newUser.password, salt, (err, hash) => {
                         newUser.password = hash;
+                        console.log(req.file.filename)
                         User.create({
                             name: newUser.name,
                             email: newUser.email,
-                            password: newUser.password
+                            password: newUser.password,
+                            avatar: req.file.filename
                         })
                             .then(user => { return res.redirect("/login") })
                             .catch(err => res.send(err));
